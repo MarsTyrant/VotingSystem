@@ -2,13 +2,13 @@ namespace VotingSystem
 {
     public class HostManager
     {
-        public static string password="marius";
+        public static string hostPassword="marius";
         public enum ElectionType {Presidential, Parliamentary, Local}
         public struct CandidateBase
         {
            public string name;
-           public int[] nrVotes;
-           public double[] perVotes;
+           public int nrVotes;
+           public double perVotes;
         }
         public struct ElectionBase
         {

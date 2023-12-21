@@ -1,6 +1,6 @@
 ﻿namespace VotingSystem
 {
-    class Program
+    class Program : VoteManager
     {
        
        public static void Main()
@@ -14,12 +14,12 @@
          Console.WriteLine("Password required to enter as a host");
          while(true){
             Console.Write("> "); string? passWord=Console.ReadLine();
-            if(passWord==HostManager.password){ 
-              HostManager electionProgram=new HostManager();
-              electionProgram.MakeElection();
-              electionProgram.RegisterCandidates();
+            if(passWord==hostPassword){ 
+              HostManager electionProgramHost=new HostManager();
+              electionProgramHost.MakeElection();
+              electionProgramHost.RegisterCandidates();
               for(int i=0;i<=1;++i){
-                Console.WriteLine($"{i+1}.{electionProgram.electionHost.candidates[i].name}");
+                Console.WriteLine($"{i+1}.{electionProgramHost.electionHost.candidates[i].name}");
               }
               break;
             }
@@ -27,7 +27,17 @@
          }
         }
         else if(person=="participant"){
-          
+           VoteManager electionProgramPart = new VoteManager();
+           electionProgramPart.ListCandidates();
+           Console.Write("Do you want to vote? Type 1 for yes and 0 for no\n> ");
+           string? choice=Console.ReadLine();
+           switch(choice){
+              case "1":
+                electionProgramPart.VoteForCandidate();
+                break;
+              case "2":
+                break;
+           }
         } 
       }
     }
