@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\C# Projects\\VotingSystem\\VotingSystem.csproj": {}
+    "E:\\C# Projects\\VotingSystem\\VotingSystem.csproj": {}
   },
   "projects": {
-    "e:\\C# Projects\\VotingSystem\\VotingSystem.csproj": {
+    "E:\\C# Projects\\VotingSystem\\VotingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\C# Projects\\VotingSystem\\VotingSystem.csproj",
+        "projectUniqueName": "E:\\C# Projects\\VotingSystem\\VotingSystem.csproj",
         "projectName": "VotingSystem",
-        "projectPath": "e:\\C# Projects\\VotingSystem\\VotingSystem.csproj",
+        "projectPath": "E:\\C# Projects\\VotingSystem\\VotingSystem.csproj",
         "packagesPath": "C:\\Users\\chiri\\.nuget\\packages\\",
-        "outputPath": "e:\\C# Projects\\VotingSystem\\obj\\",
+        "outputPath": "E:\\C# Projects\\VotingSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chiri\\AppData\\Roaming\\NuGet\\NuGet.Config"

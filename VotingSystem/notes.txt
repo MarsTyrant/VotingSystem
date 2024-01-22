@@ -1,1 +1,1 @@
-1. Try an resolve the out of range exception by making a static list of elections in program class
+1. Try an resolve the out of range exception by making a static list of elections in program class (worked)
