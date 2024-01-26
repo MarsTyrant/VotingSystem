@@ -9,7 +9,7 @@
          Console.WriteLine("Welcome to the National Voting System Management!");
           while(programActive==true)
           {
-            Console.Write("Type whether you enter as a host or as a participant. 0 as a host or 1 as a participant. If you want to exit type 'esc' \n> ");
+            Console.Write("Type whether you enter as a host or as a participant. 0 as a host or 1 as a participant. If you want to exit type 'x' \n> ");
             # pragma warning disable 
             string? personNr=Console.ReadLine().ToLower();
             # pragma warning restore
@@ -23,19 +23,20 @@
                 HostManager electionProgramHost=new HostManager();
                 electionProgramHost.MakeElection();
                 electionProgramHost.RegisterCandidates();
-                for(int i=0;i<=1;++i){
+                for(int i=0;i<=4;++i){
                   Console.WriteLine($"{i+1}.{elections[0].candidates[i].name}");
                }
                break;
-             }
+              }
+              else if(passWord=="x") { programActive=false; break; }
               else { Console.WriteLine("Invalid Password. Try Again!"); } 
-           }
-         }
+              }
+            }
 
            else if(personNr=="1")
            {
             VoteManager electionProgramPart=new();
-            if(elections[0].candidates.Length>=2)
+            if(elections.Count!=0 && elections[0].candidates.Length>=2)
             {
                electionProgramPart.ListCandidates();
                Console.Write("Do you want to vote? Type 1 for yes and 0 for no\n> ");
@@ -51,7 +52,7 @@
             }
             else {Console.WriteLine("There is no election held.");}
            }
-           else if(personNr=="esc") { programActive=false; } 
+           else if(personNr=="x") { programActive=false; } 
          }
        }
     }

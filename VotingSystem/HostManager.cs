@@ -66,7 +66,7 @@ namespace VotingSystem
           {
             Console.Write("Type the name of the candidate and press enter to register the next candidate. Type x to end the registration\n> ");
             string? choice=Console.ReadLine();
-            if(choice=="x") { break; }
+            if(choice=="exit") { break; }
             string[] name=choice.Split(' ');
             if(name.Length!=2 && name.Length!=3) { Console.WriteLine("Not valid name"); }
             else Program.elections[0].candidates[i].name=name[0]+' '+name[1];
