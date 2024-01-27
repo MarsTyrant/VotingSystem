@@ -3,6 +3,7 @@
     class Program : VoteManager
     {
        public static List<ElectionBase> elections=new();
+       public static int totatVotes;
        public static void Main()
        {
          bool programActive=true;
@@ -21,12 +22,21 @@
               if(passWord==hostPassword)
               {
                 HostManager electionProgramHost=new HostManager();
-                electionProgramHost.MakeElection();
-                electionProgramHost.RegisterCandidates();
-                for(int i=0;i<=4;++i){
+                Console.WriteLine("Do you want to organise a new election or see the results of the current one?. Type 0 for new election and 1 for the results. \n>");
+                string? hostChoice=Console.ReadLine();
+                if(hostChoice=="1")
+                {
+                  electionProgramHost.LiveResults();
+                }
+                else
+                {
+                  electionProgramHost.MakeElection();
+                  electionProgramHost.RegisterCandidates();
+                  for(int i=0;i<=4;++i){
                   Console.WriteLine($"{i+1}.{elections[0].candidates[i].name}");
-               }
-               break;
+                  }
+                  break;
+                }
               }
               else if(passWord=="x") { programActive=false; break; }
               else { Console.WriteLine("Invalid Password. Try Again!"); } 
@@ -44,6 +54,7 @@
                switch(choice)
                {
                  case "1":
+                  totatVotes++;
                   electionProgramPart.VoteForCandidate();
                   break;
                  case "0":

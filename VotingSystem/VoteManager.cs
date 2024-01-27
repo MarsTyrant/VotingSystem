@@ -40,8 +40,8 @@ namespace VotingSystem
         public void CalcAndListPercentage()
         {
             for(int i=0;i<Program.elections[0].candidates.Length;++i){
-                Program.elections[0].candidates[i].perVotes=Program.elections[0].candidates[i].nrVotes/10;
-                Console.WriteLine($"{i+1}.{Program.elections[0].candidates[i].name} - {Program.elections[0].candidates[i].perVotes}");
+                Program.elections[0].candidates[i].perVotes=(Program.elections[0].candidates[i].nrVotes/Program.totatVotes)*100;
+                Console.WriteLine($"{i+1}.{Program.elections[0].candidates[i].name} - {Program.elections[0].candidates[i].perVotes} %");
             }
         }
     }

@@ -75,9 +75,12 @@ namespace VotingSystem
 
         }
 
-        public int LiveResults()
+        public void LiveResults()
         {
-          return 0;
+          VoteManager results=new();
+          Console.WriteLine("So far, these are the results.");
+          results.CalcAndListPercentage();
+
         }
     }
 
