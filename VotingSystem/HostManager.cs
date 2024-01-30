@@ -64,7 +64,7 @@ namespace VotingSystem
           int i=0;
           while(true)
           {
-            Console.Write("Type the name of the candidate and press enter to register the next candidate. Type x to end the registration\n> ");
+            Console.Write("Type the name of the candidate and press enter to register the next candidate. Type exit to end the registration\n> ");
             string? choice=Console.ReadLine();
             if(choice=="exit") { break; }
             string[] name=choice.Split(' ');

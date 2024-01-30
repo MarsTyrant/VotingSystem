@@ -22,7 +22,7 @@
               if(passWord==hostPassword)
               {
                 HostManager electionProgramHost=new HostManager();
-                Console.WriteLine("Do you want to organise a new election or see the results of the current one?. Type 0 for new election and 1 for the results. \n>");
+                Console.Write("Do you want to organise a new election or see the results of the current one?. Type 0 for new election and 1 for the results. \n>");
                 string? hostChoice=Console.ReadLine();
                 if(hostChoice=="1")
                 {

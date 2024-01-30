@@ -1,1 +1,2 @@
-1. Try an resolve the out of range exception by making a static list of elections in program class (worked)
+1. Save elections in a file in order to write, save and retrieve data 
+2. Solve the percentage bug (shows 0%, no matter the number of votes for a candidate)
