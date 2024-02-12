@@ -1,7 +1,11 @@
+using System.Xml;
+
 namespace VotingSystem
 {
     public class HostManager
     {
+        public const string XmlFilePath="elections.xml";
+        public const string XmlSchemaPath="students.xsd";
         public static string hostPassword="marius";
         public enum ElectionType {Presidential, Parliamentary, Local}
         public struct CandidateBase
@@ -64,20 +68,43 @@ namespace VotingSystem
           int i=0;
           while(true)
           {
-            Console.Write("Type the name of the candidate and press enter to register the next candidate. Type x to end the registration\n> ");
+            Console.Write("Type the name of the candidate and press enter to register the next candidate. Type exit to end the registration\n> ");
             string? choice=Console.ReadLine();
             if(choice=="exit") { break; }
             string[] name=choice.Split(' ');
             if(name.Length!=2 && name.Length!=3) { Console.WriteLine("Not valid name"); }
-            else Program.elections[0].candidates[i].name=name[0]+' '+name[1];
+            else {
+              Program.elections[0].candidates[i].name=name[0]+' '+name[1];
+            }
             i++;
           }
 
         }
 
-        public int LiveResults()
+        public void LiveResults()
         {
-          return 0;
+          VoteManager results=new();
+          Console.WriteLine("So far, these are the results.");
+          results.CalcAndListPercentage();
+        }
+        public void SaveCandidatesToXML()
+        {
+           var settings=new XmlWriterSettings {Indent=true};
+           using var writer=XmlWriter.Create(XmlFilePath,settings);
+           writer.WriteStartDocument();
+           writer.WriteStartElement("Election");
+           writer.WriteElementString("Type",Program.elections[0].type.ToString());
+           for(int i=0;i<Program.elections[0].candidates.Length;++i){
+              writer.WriteElementString("Name",Program.elections[0].candidates[i].name);
+           }
+        }
+        public void SavePercentageToXML()
+        {
+          var settings=new XmlWriterSettings {Indent=true};
+          using var writer=XmlWriter.Create(XmlFilePath,settings);
+          for(int i=0;i<Program.elections[0].candidates.Length;++i){
+              writer.WriteElementString("Percentage",Program.elections[0].candidates[i].perVotes.ToString());
+           }
         }
     }
 
