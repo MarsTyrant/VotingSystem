@@ -2,10 +2,13 @@
 {
     class Program : VoteManager
     {
+       
        public static List<ElectionBase> elections=new();
        public static int totatVotes;
        public static void Main()
        {
+         HostManager electionProgramHost=new HostManager();
+         VoteManager electionProgramVote=new VoteManager();
          bool programActive=true;
          Console.WriteLine("Welcome to the National Voting System Management!");
           while(programActive==true)
@@ -21,19 +24,20 @@
               Console.Write("> "); string? passWord=Console.ReadLine();
               if(passWord==hostPassword)
               {
-                HostManager electionProgramHost=new HostManager();
                 Console.Write("Do you want to organise a new election or see the results of the current one?. Type 0 for new election and 1 for the results. \n>");
                 string? hostChoice=Console.ReadLine();
                 if(hostChoice=="1")
                 {
-                  electionProgramHost.LiveResults();
+                  Console.WriteLine("So far, these are the results:");
+                  electionProgramVote.CalcAndListPercentage();
                 }
                 else
                 {
                   electionProgramHost.MakeElection();
                   electionProgramHost.RegisterCandidates();
+                  electionProgramHost.SaveCandidatesToXML();
                   for(int i=0;i<=4;++i){
-                  Console.WriteLine($"{i+1}.{elections[0].candidates[i].name}");
+                    Console.WriteLine($"{i+1}.{elections[0].candidates[i].name}");
                   }
                   break;
                 }
@@ -45,17 +49,17 @@
 
            else if(personNr=="1")
            {
-            VoteManager electionProgramPart=new();
             if(elections.Count!=0 && elections[0].candidates.Length>=2)
             {
-               electionProgramPart.ListCandidates();
+               electionProgramVote.ListCandidates();
                Console.Write("Do you want to vote? Type 1 for yes and 0 for no\n> ");
                string? choice=Console.ReadLine();
                switch(choice)
                {
                  case "1":
                   totatVotes++;
-                  electionProgramPart.VoteForCandidate();
+                  electionProgramVote.VoteForCandidate();
+                  electionProgramHost.SavePercentageToXML();
                   break;
                  case "0":
                   break;

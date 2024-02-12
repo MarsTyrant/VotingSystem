@@ -87,16 +87,23 @@ namespace VotingSystem
           Console.WriteLine("So far, these are the results.");
           results.CalcAndListPercentage();
         }
-        public void SaveToXML()
+        public void SaveCandidatesToXML()
         {
            var settings=new XmlWriterSettings {Indent=true};
            using var writer=XmlWriter.Create(XmlFilePath,settings);
            writer.WriteStartDocument();
            writer.WriteStartElement("Election");
            writer.WriteElementString("Type",Program.elections[0].type.ToString());
-           for(int i=0;i<=Program.elections[0].candidates.Length;++i){
+           for(int i=0;i<Program.elections[0].candidates.Length;++i){
               writer.WriteElementString("Name",Program.elections[0].candidates[i].name);
-              writer.WriteElementString("NrVotes",Program.elections[0].candidates[i].nrVotes.ToString());
+           }
+        }
+        public void SavePercentageToXML()
+        {
+          var settings=new XmlWriterSettings {Indent=true};
+          using var writer=XmlWriter.Create(XmlFilePath,settings);
+          for(int i=0;i<Program.elections[0].candidates.Length;++i){
+              writer.WriteElementString("Percentage",Program.elections[0].candidates[i].perVotes.ToString());
            }
         }
     }
