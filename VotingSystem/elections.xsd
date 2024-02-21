@@ -4,8 +4,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Type" type="xs:string">
-                <xs:element name="Names" type="xs:list">
-                <xs:element name="Percentages" type="xs:list">
+                <xs:element name="Candidate" type="xs:CandidateBase">
+                <xs:element name="Percentages" type="xs:CandidateBase">
             </xs:sequence>
         </xs:complexType>
 </xs:schema>

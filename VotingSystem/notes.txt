@@ -1,4 +1,14 @@
-1. Save elections in a file in order to write, save and retrieve data 
-2. Solve the percentage bug (shows 0%, no matter the number of votes for a candidate)
-3. The number of candidates shows even if there is no candidate
-4. Clear the console after every choice
+Tasks:
+-  Save elections in a file in order to write, save and retrieve data (Exception occurs in writing) 
+-  Make the cadidates for a Parliamentary election to be only party type admissible
+-  Clear the console after every choice (only for VoteManager remaining)
+- Add comments to the code (more towards the end of project)
+
+Exception, bugs and overall issues:
+-  Exception occurs when trying to write percentage of votes of one candidate into XML file. (either try to identify the problem or choose another file format, ex:JSON)
+-  The percentage value is 0, not matter the number of votes for a candidate (need to identify the bug)
+
+
+Type of candidates for every type of election:
+ Presidential, Local --> Person Name
+ Parliamentary --> Party Name

@@ -5,7 +5,7 @@ namespace VotingSystem
     public class HostManager
     {
         public const string XmlFilePath="elections.xml";
-        public const string XmlSchemaPath="students.xsd";
+        public const string XmlSchemaPath="elections.xsd";
         public static string hostPassword="marius";
         public enum ElectionType {Presidential, Parliamentary, Local}
         public struct CandidateBase
@@ -16,7 +16,8 @@ namespace VotingSystem
         }
         public struct ElectionBase
         {
-            public CandidateBase[] candidates=new CandidateBase[5];
+            public List<CandidateBase> candidates=new List<CandidateBase>();
+            // public CandidateBase[] candidates=new CandidateBase[5];
             //public string[] candidates=new string[5];
             public ElectionType type;
             #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -58,6 +59,7 @@ namespace VotingSystem
                    Console.Write("Invalid Input. Type 1 for Presidential, 2 for Parliamentary or 3 for Local\n");
                    continue;
                }
+               Console.Clear();
                break;
             } 
          } 
@@ -71,13 +73,12 @@ namespace VotingSystem
             Console.Write("Type the name of the candidate and press enter to register the next candidate. Type exit to end the registration\n> ");
             string? choice=Console.ReadLine();
             if(choice=="exit") { break; }
-            string[] name=choice.Split(' ');
-            if(name.Length!=2 && name.Length!=3) { Console.WriteLine("Not valid name"); }
-            else {
-              Program.elections[0].candidates[i].name=name[0]+' '+name[1];
-            }
+            /*string[] name=choice.Split(' ');*/
+            //Program.elections[0].candidates[i].name=choice;
+            Program.elections[0].candidates.Add(new CandidateBase() {name=choice});
             i++;
           }
+          Console.Clear();
 
         }
 
@@ -94,18 +95,19 @@ namespace VotingSystem
            writer.WriteStartDocument();
            writer.WriteStartElement("Election");
            writer.WriteElementString("Type",Program.elections[0].type.ToString());
-           for(int i=0;i<Program.elections[0].candidates.Length;++i){
+           for(int i=0;i<Program.elections[0].candidates.Count;++i){
+              writer.WriteStartElement("Candidate");
               writer.WriteElementString("Name",Program.elections[0].candidates[i].name);
+              writer.WriteElementString("Percentage",Program.elections[0].candidates[i].perVotes.ToString());
            }
         }
         public void SavePercentageToXML()
         {
           var settings=new XmlWriterSettings {Indent=true};
           using var writer=XmlWriter.Create(XmlFilePath,settings);
-          for(int i=0;i<Program.elections[0].candidates.Length;++i){
+          for(int i=0;i<Program.elections[0].candidates.Count;++i){
               writer.WriteElementString("Percentage",Program.elections[0].candidates[i].perVotes.ToString());
            }
         }
     }
-
 } 
